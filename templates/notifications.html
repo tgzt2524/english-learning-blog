@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}通知 — 英语学习博客{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-12">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold"><i class="fa-solid fa-bell mr-3 text-primary"></i>通知</h1>
+        {% if notifications %}
+        <button onclick="markAllRead()" class="btn btn-ghost btn-sm"><i class="fa-solid fa-check-double mr-1"></i>全部已读</button>
+        {% endif %}
+    </div>
+    <div class="space-y-3">
+        {% for n in notifications %}
+        <div class="card bg-base-100 shadow-sm {% if not n.is_read %}border-l-4 border-primary{% endif %}">
+            <div class="card-body p-4 flex-row items-center gap-3">
+                <div class="avatar"><div class="w-10 rounded-full"><img src="{{ n.actor.avatar }}"></div></div>
+                <div class="flex-1">
+                    <a href="/profile/{{ n.actor.username }}" class="font-bold link link-hover">{{ n.actor.username }}</a>
+                    {% if n.notif_type == 'comment' %}评论了你的文章 <a href="/post/{{ n.post_slug }}" class="link link-hover">{{ n.post_slug }}</a>
+                    {% elif n.notif_type == 'reply' %}回复了你的评论 <a href="/post/{{ n.post_slug }}#comments" class="link link-hover">{{ n.post_slug }}</a>
+                    {% elif n.notif_type == 'follow' %}关注了你
+                    {% elif n.notif_type == 'mention' %}在评论中提到了你 <a href="/post/{{ n.post_slug }}#comments" class="link link-hover">{{ n.post_slug }}</a>
+                    {% endif %}
+                </div>
+                <div class="text-xs opacity-50">{{ n.created_at.strftime('%m-%d %H:%M') }}</div>
+            </div>
+        </div>
+        {% else %}
+        <div class="text-center py-20 opacity-50">
+            <i class="fa-solid fa-bell-slash text-5xl mb-4"></i>
+            <p>暂无通知</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script>
+async function markAllRead() {
+    await fetch('/notifications/read-all', {method:'POST'});
+    location.reload();
+}
+</script>
+{% endblock %}

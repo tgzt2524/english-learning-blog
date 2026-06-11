@@ -9,7 +9,10 @@ services:
       - ./posts:/app/posts:ro
       - blog-data:/app/data
     environment:
-      - SECRET_KEY=change-me-in-production
+      - SECRET_KEY=englis...26
+      - SITE_URL=http://localhost:5000
+      - GITHUB_CLIENT_ID=
+      - GITHUB_CLIENT_SECRET=
     healthcheck:
       test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000')"]
       interval: 30s

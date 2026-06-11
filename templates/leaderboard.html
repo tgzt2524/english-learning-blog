@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}排行榜 — 英语学习博客{% endblock %}
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-8"><i class="fa-solid fa-trophy mr-3 text-warning"></i>社区排行榜</h1>
+    <div class="overflow-x-auto">
+        <table class="table">
+            <thead><tr><th>#</th><th>用户</th><th>积分</th><th>连续打卡</th><th>粉丝</th></tr></thead>
+            <tbody>
+                {% for u in top_users %}
+                <tr class="hover">
+                    <td>
+                        {% if loop.index == 1 %}🥇{% elif loop.index == 2 %}🥈{% elif loop.index == 3 %}🥉{% else %}{{ loop.index }}{% endif %}
+                    </td>
+                    <td>
+                        <a href="/profile/{{ u.username }}" class="flex items-center gap-2 link link-hover">
+                            <div class="avatar"><div class="w-8 rounded-full"><img src="{{ u.avatar }}"></div></div>
+                            <span class="font-bold">{{ u.username }}</span>
+                        </a>
+                    </td>
+                    <td><span class="badge badge-primary">{{ u.total_points or 0 }}</span></td>
+                    <td>🔥 {{ u.streak_count }} 天</td>
+                    <td>{{ u.follower_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

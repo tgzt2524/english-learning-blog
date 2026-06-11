@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}搜索 — 英语学习博客{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-12">
+    <form action="/search" class="mb-8">
+        <div class="join w-full">
+            <input name="q" value="{{ query }}" class="input input-bordered join-item w-full"
+                   placeholder="搜索文章..." autofocus>
+            <button class="btn btn-primary join-item"><i class="fa-solid fa-magnifying-glass mr-1"></i>搜索</button>
+        </div>
+    </form>
+
+    {% if query %}
+    <p class="mb-6 opacity-70">找到 <strong>{{ results|length }}</strong> 篇相关文章</p>
+    {% if results %}
+    <div class="grid gap-6">
+        {% for p in results %}
+        <div class="card bg-base-100 shadow">
+            <div class="card-body">
+                <h2 class="card-title"><a href="/post/{{ p.slug }}" class="hover:text-primary">{{ p.title }}</a></h2>
+                <div class="flex items-center gap-3 text-sm opacity-70">
+                    {% if p.date %}<span><i class="fa-solid fa-calendar mr-1"></i>{{ p.date }}</span>{% endif %}
+                    {% if p.tags %}<div class="flex gap-1">{% for t in p.tags %}<span class="badge badge-sm">{{ t }}</span>{% endfor %}</div>{% endif %}
+                </div>
+                {% if p.summary %}<p class="opacity-80">{{ p.summary }}</p>{% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-20 opacity-50">
+        <i class="fa-solid fa-search text-5xl mb-4"></i>
+        <p>没有找到相关内容</p>
+    </div>
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

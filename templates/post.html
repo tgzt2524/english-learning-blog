@@ -1,148 +1,162 @@
 {% extends "base.html" %}
-{% block title %}{{ post.title }} — 英语学习博客{% endblock %}
+{% block title %}{{ post.title }}{% endblock %}
 {% block content %}
-
 <div class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-4">{{ post.title }}</h1>
+    <div class="flex flex-wrap items-center gap-3 text-sm opacity-70 mb-4">
+        {% if post.date %}<span><i class="fa-solid fa-calendar mr-1"></i>{{ post.date }}</span>{% endif %}
+        {% if post.tags %}<div class="flex gap-1">{% for t in post.tags %}<a href="/?tag={{ t }}" class="badge badge-outline">{{ t }}</a>{% endfor %}</div>{% endif %}
+    </div>
 
-    <!-- Post Header -->
-    <div class="mb-10">
-        <h1 class="text-4xl font-bold mb-4">{{ post.title }}</h1>
-        <div class="flex flex-wrap items-center gap-3 text-sm opacity-70 mb-6">
-            {% if post.date %}
-            <span><i class="fa-solid fa-calendar mr-1"></i>{{ post.date }}</span>
-            {% endif %}
-            {% if post.tags %}
-            <div class="flex flex-wrap gap-1">
-                {% for tag in post.tags %}
-                <a href="/?tag={{ tag }}" class="badge badge-outline">{{ tag }}</a>
+    <!-- Reaction Picker -->
+    <div class="flex flex-wrap items-center gap-3 mb-6">
+        {% if current_user.is_authenticated %}
+        <div class="dropdown dropdown-hover">
+            <label tabindex="0" class="btn btn-outline btn-sm gap-1 {% if post.user_reaction %}btn-primary{% endif %}">
+                <span id="currentReaction">{{ REACTION_EMOJI.get(post.user_reaction, '👍') }}</span>
+                <span id="reactionCount">{{ post.stats.reactions }}</span>
+            </label>
+            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box flex-row gap-1 z-50">
+                {% for rt in reaction_types %}
+                <li><button class="btn btn-ghost btn-sm text-lg" onclick="react('{{ post.slug }}','{{ rt }}')">{{ REACTION_EMOJI[rt] }}</button></li>
                 {% endfor %}
-            </div>
-            {% endif %}
+            </ul>
         </div>
+        {% else %}
+        <a href="/login?next=/post/{{ post.slug }}" class="btn btn-outline btn-sm">👍 {{ post.stats.reactions }}</a>
+        {% endif %}
 
-        <!-- Action Buttons -->
-        <div class="flex flex-wrap gap-3">
-            {% if current_user.is_authenticated %}
-            <button class="btn btn-outline btn-sm gap-1 {% if post.liked %}btn-error text-white{% endif %}"
-                    onclick="toggleAction('{{ post.slug }}', 'like')" id="like-btn">
-                <i class="fa-solid fa-heart"></i>
-                <span class="count">{{ post.stats.likes }}</span> 点赞
-            </button>
-            <button class="btn btn-outline btn-sm gap-1 {% if post.favorited %}btn-warning{% endif %}"
-                    onclick="toggleAction('{{ post.slug }}', 'favorite')" id="fav-btn">
-                <i class="fa-solid fa-star"></i>
-                <span class="count">{{ post.stats.favorites }}</span> 收藏
-            </button>
-            {% else %}
-            <a href="/login?next=/post/{{ post.slug }}" class="btn btn-outline btn-sm gap-1">
-                <i class="fa-solid fa-heart"></i>{{ post.stats.likes }} 点赞
-            </a>
-            <a href="/login?next=/post/{{ post.slug }}" class="btn btn-outline btn-sm gap-1">
-                <i class="fa-solid fa-star"></i>{{ post.stats.favorites }} 收藏
-            </a>
-            {% endif %}
-            <span class="btn btn-ghost btn-sm gap-1 no-animation">
-                <i class="fa-solid fa-comment"></i>{{ post.stats.comments }} 评论
-            </span>
+        {% if current_user.is_authenticated %}
+        <button class="btn btn-outline btn-sm gap-1 {% if post.favorited %}btn-warning{% endif %}" onclick="toggleFav('{{ post.slug }}')" id="favBtn">
+            <i class="fa-solid fa-star"></i><span id="favCount">{{ post.stats.favorites }}</span>
+        </button>
+        {% else %}
+        <a href="/login?next=/post/{{ post.slug }}" class="btn btn-outline btn-sm">⭐ {{ post.stats.favorites }}</a>
+        {% endif %}
+
+        <span class="text-sm opacity-60"><i class="fa-solid fa-comment"></i> {{ post.stats.comments }} 评论</span>
+
+        <!-- Share -->
+        <div class="dropdown dropdown-hover ml-auto">
+            <label tabindex="0" class="btn btn-ghost btn-sm"><i class="fa-solid fa-share-nodes"></i> 分享</label>
+            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box z-50">
+                <li><a href="https://twitter.com/intent/tweet?url={{ SITE_URL }}/post/{{ post.slug }}&text={{ post.title }}" target="_blank"><i class="fa-brands fa-x-twitter"></i> Twitter</a></li>
+                <li><a href="https://service.weibo.com/share/share.php?url={{ SITE_URL }}/post/{{ post.slug }}&title={{ post.title }}" target="_blank"><i class="fa-brands fa-weibo"></i> 微博</a></li>
+                <li><a onclick="copyLink('{{ SITE_URL }}/post/{{ post.slug }}')"><i class="fa-solid fa-link"></i> 复制链接</a></li>
+            </ul>
         </div>
     </div>
 
-    <!-- Divider -->
     <div class="divider"></div>
 
-    <!-- Post Content (Markdown HTML) -->
-    <article class="prose max-w-none mb-12">
-        {{ post.html | safe }}
-    </article>
+    <article class="prose max-w-none mb-12">{{ post.html | safe }}</article>
 
-    <!-- Post Nav -->
     <div class="divider"></div>
     <div class="flex justify-between mt-8">
-        {% if prev_post %}
-        <a href="/post/{{ prev_post.slug }}" class="btn btn-ghost">
-            <i class="fa-solid fa-arrow-left mr-2"></i>{{ prev_post.title }}
-        </a>
-        {% else %}<span></span>{% endif %}
-        {% if next_post %}
-        <a href="/post/{{ next_post.slug }}" class="btn btn-ghost">
-            {{ next_post.title }}<i class="fa-solid fa-arrow-right ml-2"></i>
-        </a>
-        {% endif %}
+        {% if prev_post %}<a href="/post/{{ prev_post.slug }}" class="btn btn-ghost"><i class="fa-solid fa-arrow-left mr-2"></i>{{ prev_post.title }}</a>{% else %}<span></span>{% endif %}
+        {% if next_post %}<a href="/post/{{ next_post.slug }}" class="btn btn-ghost">{{ next_post.title }}<i class="fa-solid fa-arrow-right ml-2"></i></a>{% endif %}
     </div>
 
     <!-- Comments -->
-    <div class="divider text-lg font-bold mt-12">
-        <i class="fa-solid fa-comments mr-2"></i>评论 ({{ comments|length }})
-    </div>
+    <div class="divider text-lg font-bold mt-12" id="comments"><i class="fa-solid fa-comments mr-2"></i>评论 ({{ comments|length }})</div>
 
     {% if current_user.is_authenticated %}
     <form method="POST" action="/post/{{ post.slug }}/comment" class="mb-8">
         <textarea name="content" class="textarea textarea-bordered w-full" rows="3"
-                  placeholder="写下你的想法..." required minlength="2"></textarea>
-        <button type="submit" class="btn btn-primary mt-3">
-            <i class="fa-solid fa-paper-plane mr-1"></i>发表评论
-        </button>
+                  placeholder="写下你的想法... 可以用 @用户名 提及他人" required minlength="2"></textarea>
+        <button type="submit" class="btn btn-primary mt-3"><i class="fa-solid fa-paper-plane mr-1"></i>发表评论</button>
     </form>
     {% else %}
-    <div class="alert mb-8">
-        <i class="fa-solid fa-lock"></i>
-        <span><a href="/login?next=/post/{{ post.slug }}" class="link link-primary">登录</a> 后即可评论</span>
-    </div>
+    <div class="alert mb-8"><i class="fa-solid fa-lock"></i><span><a href="/login?next=/post/{{ post.slug }}" class="link link-primary">登录</a> 后即可评论</span></div>
     {% endif %}
 
-    <!-- Comments List -->
     <div class="space-y-4">
-        {% if comments %}
-            {% for comment in comments %}
-            <div class="chat chat-start">
-                <div class="chat-image avatar">
-                    <div class="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center font-bold">
-                        {{ comment.author.username[0].upper() }}
-                    </div>
-                </div>
-                <div class="chat-header mb-1">
-                    <span class="font-bold">{{ comment.author.username }}</span>
-                    <time class="text-xs opacity-50 ml-2">{{ comment.created_at.strftime('%Y-%m-%d %H:%M') }}</time>
-                </div>
-                <div class="chat-bubble">{{ comment.content }}</div>
-                {% if current_user.is_authenticated and current_user.id == comment.user_id %}
-                <div class="chat-footer mt-1">
-                    <form method="POST" action="/post/{{ post.slug }}/comment/{{ comment.id }}/delete"
-                          onsubmit="return confirm('确定删除这条评论吗？')">
-                        <button type="submit" class="btn btn-ghost btn-xs text-error">
-                            <i class="fa-solid fa-trash mr-1"></i>删除
-                        </button>
-                    </form>
-                </div>
+        {% macro render_comment(c, level=0) %}
+        <div class="chat chat-start" style="margin-left: {{ level * 24 }}px">
+            <div class="chat-image avatar"><div class="w-10 rounded-full"><img src="{{ c.author.avatar }}"></div></div>
+            <div class="chat-header mb-1">
+                <a href="/profile/{{ c.author.username }}" class="font-bold link link-hover">{{ c.author.username }}</a>
+                <time class="text-xs opacity-50 ml-2">{{ c.created_at.strftime('%Y-%m-%d %H:%M') }}</time>
+            </div>
+            <div class="chat-bubble">{{ c.content }}</div>
+            <div class="chat-footer mt-1 flex gap-2">
+                {% if current_user.is_authenticated %}
+                <button class="btn btn-ghost btn-xs" onclick="replyTo({{ c.id }},'{{ c.author.username }}')">
+                    <i class="fa-solid fa-reply mr-1"></i>回复
+                </button>
+                {% endif %}
+                {% if current_user.is_authenticated and current_user.id == c.user_id %}
+                <form method="POST" action="/post/{{ post.slug }}/comment/{{ c.id }}/delete"
+                      onsubmit="return confirm('删除这条评论？')" class="inline">
+                    <button class="btn btn-ghost btn-xs text-error"><i class="fa-solid fa-trash"></i></button>
+                </form>
                 {% endif %}
             </div>
-            {% endfor %}
+        </div>
+        {% if replies_map.get(c.id) %}
+        {% for reply in replies_map[c.id] %}
+        {{ render_comment(reply, level+1) }}
+        {% endfor %}
+        {% endif %}
+        {% endmacro %}
+
+        {% if comments %}
+        {% for c in comments %}
+        {{ render_comment(c) }}
+        {% endfor %}
         {% else %}
-            <div class="text-center py-8 opacity-50">
-                <i class="fa-solid fa-message text-4xl mb-2"></i>
-                <p>✨ 暂无评论，来抢沙发吧！</p>
-            </div>
+        <div class="text-center py-8 opacity-50"><i class="fa-solid fa-message text-4xl mb-2"></i><p>✨ 暂无评论，来抢沙发！</p></div>
         {% endif %}
     </div>
+</div>
 
+<!-- Hidden reply form -->
+<div id="replyForm" style="display:none">
+    <form method="POST" action="/post/{{ post.slug }}/comment" class="mb-4 p-4 bg-base-200 rounded-box">
+        <p class="text-sm mb-2">回复 <span id="replyToName"></span></p>
+        <input type="hidden" name="parent_id" id="replyParentId">
+        <textarea name="content" class="textarea textarea-bordered w-full" rows="2" id="replyContent" required minlength="2"></textarea>
+        <div class="flex gap-2 mt-2">
+            <button type="submit" class="btn btn-sm btn-primary">回复</button>
+            <button type="button" class="btn btn-sm btn-ghost" onclick="cancelReply()">取消</button>
+        </div>
+    </form>
 </div>
 
 <script>
-async function toggleAction(slug, action) {
-    const resp = await fetch(`/post/${slug}/${action}`, { method: 'POST' });
-    if (!resp.ok) { alert('操作失败，请先登录'); return; }
-    const data = await resp.json();
-    if (action === 'like') {
-        const btn = document.getElementById('like-btn');
-        btn.classList.toggle('btn-error', data.liked);
-        btn.classList.toggle('text-white', data.liked);
-        btn.querySelector('.count').textContent = data.count;
-    } else if (action === 'favorite') {
-        const btn = document.getElementById('fav-btn');
-        btn.classList.toggle('btn-warning', data.favorited);
-        btn.querySelector('.count').textContent = data.count;
-    }
+async function react(slug, type) {
+    const form = new FormData();
+    form.append('type', type);
+    const r = await fetch(`/post/${slug}/react`, {method:'POST', body: form});
+    const d = await r.json();
+    const emojis = {'like':'👍','love':'❤️','clap':'👏','wow':'😮','fire':'🔥','think':'🤔'};
+    document.getElementById('currentReaction').textContent = d.reacted ? emojis[type] : '👍';
+    document.getElementById('reactionCount').textContent = d.stats.reactions;
+}
+
+async function toggleFav(slug) {
+    const r = await fetch(`/post/${slug}/favorite`, {method:'POST'});
+    const d = await r.json();
+    document.getElementById('favCount').textContent = d.count;
+    const btn = document.getElementById('favBtn');
+    btn.classList.toggle('btn-warning', d.favorited);
+}
+
+function replyTo(commentId, username) {
+    const form = document.getElementById('replyForm');
+    form.style.display = 'block';
+    document.getElementById('replyParentId').value = commentId;
+    document.getElementById('replyToName').textContent = '@' + username;
+    document.getElementById('replyContent').value = '@' + username + ' ';
+    form.scrollIntoView({behavior:'smooth'});
+}
+
+function cancelReply() {
+    document.getElementById('replyForm').style.display = 'none';
+}
+
+function copyLink(url) {
+    navigator.clipboard.writeText(url).then(() => alert('链接已复制！'));
 }
 </script>
-
 {% endblock %}

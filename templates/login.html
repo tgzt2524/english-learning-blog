@@ -1,38 +1,30 @@
 {% extends "base.html" %}
 {% block title %}登录 — 英语学习博客{% endblock %}
 {% block content %}
-
 <div class="flex justify-center items-center py-20 px-4">
     <div class="card bg-base-100 shadow-xl w-full max-w-md">
         <div class="card-body">
-            <h2 class="card-title text-2xl justify-center mb-4">
-                <i class="fa-solid fa-right-to-bracket text-primary"></i> 登录
-            </h2>
+            <h2 class="card-title text-2xl justify-center mb-4"><i class="fa-solid fa-right-to-bracket text-primary"></i> 登录</h2>
+
+            <a href="/auth/github" class="btn btn-outline w-full mb-4">
+                <i class="fa-brands fa-github text-lg"></i> GitHub 一键登录
+            </a>
+
+            <div class="divider text-sm opacity-50">或使用账号密码</div>
+
             <form method="POST" action="/login">
                 <div class="form-control mb-4">
-                    <label class="label" for="username">
-                        <span class="label-text font-semibold"><i class="fa-solid fa-user mr-1"></i>用户名</span>
-                    </label>
-                    <input type="text" id="username" name="username"
-                           class="input input-bordered w-full" required autofocus>
+                    <label class="label"><span class="label-text font-semibold"><i class="fa-solid fa-user mr-1"></i>用户名</span></label>
+                    <input type="text" name="username" class="input input-bordered w-full" required autofocus>
                 </div>
                 <div class="form-control mb-6">
-                    <label class="label" for="password">
-                        <span class="label-text font-semibold"><i class="fa-solid fa-lock mr-1"></i>密码</span>
-                    </label>
-                    <input type="password" id="password" name="password"
-                           class="input input-bordered w-full" required>
+                    <label class="label"><span class="label-text font-semibold"><i class="fa-solid fa-lock mr-1"></i>密码</span></label>
+                    <input type="password" name="password" class="input input-bordered w-full" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-full">
-                    <i class="fa-solid fa-right-to-bracket mr-1"></i>登录
-                </button>
+                <button type="submit" class="btn btn-primary w-full"><i class="fa-solid fa-right-to-bracket mr-1"></i>登录</button>
             </form>
-            <div class="divider text-sm opacity-50">or</div>
-            <p class="text-center text-sm opacity-70">
-                还没有账号？<a href="/register" class="link link-primary font-semibold">立即注册</a>
-            </p>
+            <p class="text-center text-sm opacity-70 mt-4">还没有账号？<a href="/register" class="link link-primary font-semibold">立即注册</a></p>
         </div>
     </div>
 </div>
-
 {% endblock %}

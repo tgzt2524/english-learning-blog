@@ -4,103 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}英语学习博客{% endblock %}</title>
-
-    <!-- Tailwind CSS v4 (browser) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-    <!-- daisyUI v5 (component library) -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-
-    <!-- daisyUI all themes -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-
-    <!-- Font Awesome 6 icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-    <!-- Custom fine-tuning -->
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="alternate" type="application/rss+xml" title="英语学习博客 RSS" href="/rss">
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <!-- Navbar -->
-    <div class="navbar bg-base-100 shadow-sm sticky top-0 z-50 px-4">
-        <div class="navbar-start">
-            <a href="/" class="btn btn-ghost text-xl font-bold gap-2">
-                <i class="fa-solid fa-book-open text-primary"></i>
-                英语学习博客
-            </a>
+<div class="navbar bg-base-100 shadow-sm sticky top-0 z-50 px-4">
+    <div class="navbar-start">
+        <a href="/" class="btn btn-ghost text-xl font-bold gap-2">
+            <i class="fa-solid fa-book-open text-primary"></i>英语学习博客
+        </a>
+    </div>
+    <div class="navbar-center hidden lg:flex items-center gap-2">
+        <div class="flex gap-1 mr-4">
+            <a href="/" class="btn btn-ghost btn-sm"><i class="fa-solid fa-house mr-1"></i>首页</a>
+            <a href="/feed" class="btn btn-ghost btn-sm"><i class="fa-solid fa-rss mr-1"></i>动态</a>
+            <a href="/leaderboard" class="btn btn-ghost btn-sm"><i class="fa-solid fa-trophy mr-1"></i>排行</a>
+            <a href="/about" class="btn btn-ghost btn-sm"><i class="fa-solid fa-circle-info mr-1"></i>关于</a>
         </div>
-        <div class="navbar-center hidden lg:flex">
-            <div class="flex gap-1">
-                <a href="/" class="btn btn-ghost btn-sm"><i class="fa-solid fa-house mr-1"></i>首页</a>
-                <a href="/about" class="btn btn-ghost btn-sm"><i class="fa-solid fa-circle-info mr-1"></i>关于</a>
+        <form action="/search" class="join">
+            <input name="q" class="input input-bordered input-sm join-item w-40" placeholder="搜索文章...">
+            <button class="btn btn-sm join-item"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+    <div class="navbar-end flex gap-1">
+        {% if current_user.is_authenticated %}
+        <a href="/profile/{{ current_user.username }}" class="btn btn-ghost btn-sm gap-1">
+            <div class="avatar placeholder"><div class="bg-primary text-primary-content rounded-full w-6"><span class="text-xs">{{ current_user.username[0].upper() }}</span></div></div>
+            {{ current_user.username }}
+        </a>
+        <a href="/notifications" class="btn btn-ghost btn-sm indicator">
+            <i class="fa-solid fa-bell"></i>
+            {% if unread_count > 0 %}
+            <span class="indicator-item badge badge-error badge-xs">{{ unread_count }}</span>
+            {% endif %}
+        </a>
+        <button class="btn btn-sm gap-1" onclick="checkin()" id="checkinBtn" title="每日打卡">
+            <i class="fa-solid fa-fire"></i><span id="streakCount">{{ current_user.streak_count }}</span>
+        </button>
+        <a href="/logout" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-from-bracket"></i></a>
+        {% else %}
+        <a href="/login" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-to-bracket mr-1"></i>登录</a>
+        <a href="/register" class="btn btn-primary btn-sm"><i class="fa-solid fa-user-plus mr-1"></i>注册</a>
+        {% endif %}
+        <button class="btn btn-ghost btn-circle" id="themeToggle"><i class="fa-solid fa-moon text-lg"></i></button>
+        <div class="dropdown dropdown-end lg:hidden">
+            <label tabindex="0" class="btn btn-ghost btn-circle"><i class="fa-solid fa-bars text-lg"></i></label>
+            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 mt-3 z-50">
+                <li><a href="/"><i class="fa-solid fa-house"></i>首页</a></li>
+                <li><a href="/feed"><i class="fa-solid fa-rss"></i>动态</a></li>
+                <li><a href="/leaderboard"><i class="fa-solid fa-trophy"></i>排行</a></li>
+                <li><a href="/about"><i class="fa-solid fa-circle-info"></i>关于</a></li>
                 {% if current_user.is_authenticated %}
-                <span class="btn btn-sm btn-primary">{{ current_user.username }}</span>
-                <a href="/logout" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-from-bracket mr-1"></i>退出</a>
+                <li><a href="/profile/{{ current_user.username }}"><i class="fa-solid fa-user"></i>个人主页</a></li>
+                <li><a href="/notifications"><i class="fa-solid fa-bell"></i>通知{% if unread_count %}<span class="badge badge-error badge-xs ml-2">{{ unread_count }}</span>{% endif %}</a></li>
+                <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i>退出</a></li>
                 {% else %}
-                <a href="/login" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-to-bracket mr-1"></i>登录</a>
-                <a href="/register" class="btn btn-ghost btn-sm"><i class="fa-solid fa-user-plus mr-1"></i>注册</a>
+                <li><a href="/login"><i class="fa-solid fa-right-to-bracket"></i>登录</a></li>
+                <li><a href="/register"><i class="fa-solid fa-user-plus"></i>注册</a></li>
                 {% endif %}
-                <a href="https://github.com/tgzt2524/english-learning-blog" target="_blank"
-                   class="btn btn-ghost btn-sm"><i class="fa-brands fa-github mr-1"></i>GitHub</a>
-            </div>
-        </div>
-        <div class="navbar-end flex gap-2">
-            <!-- Theme toggle -->
-            <button class="btn btn-ghost btn-circle" id="themeToggle" title="切换主题">
-                <i class="fa-solid fa-moon text-lg"></i>
-            </button>
-            <!-- Mobile menu -->
-            <div class="dropdown dropdown-end lg:hidden">
-                <label tabindex="0" class="btn btn-ghost btn-circle">
-                    <i class="fa-solid fa-bars text-lg"></i>
-                </label>
-                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 mt-3 z-50">
-                    <li><a href="/"><i class="fa-solid fa-house"></i>首页</a></li>
-                    <li><a href="/about"><i class="fa-solid fa-circle-info"></i>关于</a></li>
-                    {% if current_user.is_authenticated %}
-                    <li><span class="text-primary font-bold px-4 py-2">{{ current_user.username }}</span></li>
-                    <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i>退出</a></li>
-                    {% else %}
-                    <li><a href="/login"><i class="fa-solid fa-right-to-bracket"></i>登录</a></li>
-                    <li><a href="/register"><i class="fa-solid fa-user-plus"></i>注册</a></li>
-                    {% endif %}
-                    <li><a href="https://github.com/tgzt2524/english-learning-blog" target="_blank"><i class="fa-brands fa-github"></i>GitHub</a></li>
-                </ul>
-            </div>
+            </ul>
         </div>
     </div>
+</div>
 
-    <!-- Flash Messages -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <div class="toast toast-top toast-end z-50 mt-16">
-        {% for category, message in messages %}
-        <div class="alert alert-{{ 'success' if category == 'success' else 'error' if category == 'error' else 'info' }} shadow-lg animate__animated animate__fadeInRight">
-            {% if category == 'success' %}<i class="fa-solid fa-circle-check"></i>
-            {% elif category == 'error' %}<i class="fa-solid fa-circle-xmark"></i>
-            {% else %}<i class="fa-solid fa-circle-info"></i>{% endif %}
-            <span>{{ message }}</span>
-        </div>
-        {% endfor %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="toast toast-top toast-end z-50 mt-16">
+    {% for category, message in messages %}
+    <div class="alert alert-{{ 'success' if category == 'success' else 'error' if category == 'error' else 'info' }} shadow-lg">
+        <span>{{ message }}</span>
     </div>
-    {% endif %}
-    {% endwith %}
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
 
-    <!-- Main Content -->
-    <main class="flex-1">
-        {% block content %}{% endblock %}
-    </main>
+<main class="flex-1">
+    {% block content %}{% endblock %}
+</main>
 
-    <!-- Footer -->
-    <footer class="footer footer-center bg-base-200 text-base-content p-10 mt-16">
-        <aside>
-            <i class="fa-solid fa-book-open text-3xl text-primary"></i>
-            <p class="font-bold">英语学习博客</p>
-            <p>分享知识，一起进步 📖</p>
-        </aside>
-    </footer>
+<footer class="footer footer-center bg-base-200 text-base-content p-10 mt-16">
+    <aside>
+        <i class="fa-solid fa-book-open text-3xl text-primary"></i>
+        <p class="font-bold">英语学习博客</p>
+        <p>分享知识，一起进步 📖</p>
+        <div class="flex gap-3 mt-2">
+            <a href="/rss" class="link link-hover text-sm"><i class="fa-solid fa-rss mr-1"></i>RSS</a>
+            <a href="/search" class="link link-hover text-sm"><i class="fa-solid fa-magnifying-glass mr-1"></i>搜索</a>
+            <a href="https://github.com/tgzt2524/english-learning-blog" target="_blank" class="link link-hover text-sm"><i class="fa-brands fa-github mr-1"></i>GitHub</a>
+        </div>
+    </aside>
+</footer>
 
-    <script src="/static/app.js"></script>
+<script src="/static/app.js"></script>
+<script>
+async function checkin() {
+    const r = await fetch('/streak/checkin', {method:'POST'});
+    const d = await r.json();
+    document.getElementById('streakCount').textContent = d.streak;
+    if (!d.already) {
+        const btn = document.getElementById('checkinBtn');
+        btn.classList.add('btn-success');
+        setTimeout(() => btn.classList.remove('btn-success'), 1000);
+    }
+}
+</script>
 </body>
 </html>

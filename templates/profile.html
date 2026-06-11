@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}个人主页 — {{ profile_user.username }}{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-12">
+    <div class="card bg-base-100 shadow-lg mb-8">
+        <div class="card-body text-center">
+            <div class="avatar mx-auto mb-4">
+                <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <img src="{{ profile_user.avatar }}" alt="{{ profile_user.username }}">
+                </div>
+            </div>
+            <h1 class="text-2xl font-bold">{{ profile_user.username }}</h1>
+            {% if profile_user.bio %}<p class="opacity-70 mt-2">{{ profile_user.bio }}</p>{% endif %}
+
+            <div class="flex justify-center gap-4 mt-4 text-sm opacity-70">
+                <span><strong>{{ profile_user.follower_count }}</strong> 粉丝</span>
+                <span><strong>{{ profile_user.following_count }}</strong> 关注</span>
+                <span><strong>{{ profile_user.total_points or 0 }}</strong> 积分</span>
+                <span>🔥 <strong>{{ profile_user.streak_count }}</strong> 天</span>
+            </div>
+
+            {% if profile_user.website or profile_user.github_username or profile_user.twitter_username %}
+            <div class="flex justify-center gap-3 mt-4">
+                {% if profile_user.website %}<a href="{{ profile_user.website }}" target="_blank" class="btn btn-ghost btn-sm"><i class="fa-solid fa-globe"></i></a>{% endif %}
+                {% if profile_user.github_username %}<a href="https://github.com/{{ profile_user.github_username }}" target="_blank" class="btn btn-ghost btn-sm"><i class="fa-brands fa-github"></i></a>{% endif %}
+                {% if profile_user.twitter_username %}<a href="https://x.com/{{ profile_user.twitter_username }}" target="_blank" class="btn btn-ghost btn-sm"><i class="fa-brands fa-x-twitter"></i></a>{% endif %}
+            </div>
+            {% endif %}
+
+            {% if current_user.is_authenticated and current_user.id != profile_user.id %}
+            <button class="btn btn-sm mt-4 {% if is_following %}btn-outline{% else %}btn-primary{% endif %}"
+                    onclick="toggleFollow({{ profile_user.id }})" id="followBtn">
+                {% if is_following %}<i class="fa-solid fa-user-check mr-1"></i>已关注{% else %}<i class="fa-solid fa-user-plus mr-1"></i>关注{% endif %}
+            </button>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if badges %}
+    <div class="flex flex-wrap gap-2 justify-center mb-8">
+        {% for ub in badges %}
+        <div class="tooltip" data-tip="{{ ub.badge.description }}">
+            <span class="badge badge-lg gap-1">{{ ub.badge.icon }} {{ ub.badge.name }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <h2 class="text-xl font-bold mb-4"><i class="fa-solid fa-comments mr-2"></i>最近评论</h2>
+    <div class="space-y-3">
+        {% for c in comments %}
+        <div class="card bg-base-100 shadow-sm">
+            <div class="card-body p-4">
+                <div class="text-sm opacity-70 mb-2">
+                    <a href="/post/{{ c.post_slug }}" class="link link-hover font-bold">{{ c.post_slug }}</a>
+                    · {{ c.created_at.strftime('%Y-%m-%d %H:%M') }}
+                </div>
+                <p>{{ c.content[:200] }}{% if c.content|length > 200 %}...{% endif %}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script>
+async function toggleFollow(uid) {
+    const r = await fetch(`/follow/${uid}`, {method:'POST'});
+    const d = await r.json();
+    const btn = document.getElementById('followBtn');
+    if (d.following) {
+        btn.classList.add('btn-outline'); btn.classList.remove('btn-primary');
+        btn.innerHTML = '<i class="fa-solid fa-user-check mr-1"></i>已关注';
+    } else {
+        btn.classList.add('btn-primary'); btn.classList.remove('btn-outline');
+        btn.innerHTML = '<i class="fa-solid fa-user-plus mr-1"></i>关注';
+    }
+}
+</script>
+{% endblock %}

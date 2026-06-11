@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}动态 — 英语学习博客{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-8"><i class="fa-solid fa-rss mr-3 text-primary"></i>关注动态</h1>
+    {% if events %}
+    <div class="space-y-4">
+        {% for e in events %}
+        <div class="card bg-base-100 shadow-sm">
+            <div class="card-body p-4 flex-row items-center gap-3">
+                <div class="avatar"><div class="w-10 rounded-full"><img src="{{ e.user.avatar }}"></div></div>
+                <div class="flex-1">
+                    <a href="/profile/{{ e.user.username }}" class="font-bold link link-hover">{{ e.user.username }}</a>
+                    {% if e.type == 'comment' %}
+                    <span class="opacity-70">评论了 <a href="/post/{{ e.post_slug }}" class="link link-hover">{{ e.post_slug }}</a></span>
+                    <p class="text-sm opacity-60 mt-1">{{ e.content }}</p>
+                    {% elif e.type == 'reaction' %}
+                    <span class="opacity-70">对 <a href="/post/{{ e.post_slug }}" class="link link-hover">{{ e.post_slug }}</a> 表达了 {{ e.reaction }}</span>
+                    {% elif e.type == 'favorite' %}
+                    <span class="opacity-70">收藏了 <a href="/post/{{ e.post_slug }}" class="link link-hover">{{ e.post_slug }}</a></span>
+                    {% endif %}
+                </div>
+                <div class="text-xs opacity-50">{{ e.time.strftime('%m-%d %H:%M') }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-20 opacity-50">
+        <i class="fa-solid fa-inbox text-5xl mb-4"></i>
+        <p>关注一些人，这里就会出现他们的动态</p>
+        <a href="/leaderboard" class="btn btn-primary mt-4">去发现用户</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
