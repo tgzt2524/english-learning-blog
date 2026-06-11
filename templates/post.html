@@ -15,6 +15,33 @@
             </span>
             {% endif %}
         </div>
+
+        <!-- Action buttons -->
+        <div class="post-actions">
+            {% if current_user.is_authenticated %}
+            <button class="action-btn like-btn {% if post.liked %}active{% endif %}"
+                    onclick="toggleAction('{{ post.slug }}', 'like')"
+                    id="like-btn">
+                👍 <span class="count">{{ post.stats.likes }}</span> 点赞
+            </button>
+            <button class="action-btn fav-btn {% if post.favorited %}active{% endif %}"
+                    onclick="toggleAction('{{ post.slug }}', 'favorite')"
+                    id="fav-btn">
+                {% if post.favorited %}🌟{% else %}⭐{% endif %}
+                <span class="count">{{ post.stats.favorites }}</span> 收藏
+            </button>
+            {% else %}
+            <a href="/login?next=/post/{{ post.slug }}" class="action-btn">
+                👍 {{ post.stats.likes }} 点赞
+            </a>
+            <a href="/login?next=/post/{{ post.slug }}" class="action-btn">
+                ⭐ {{ post.stats.favorites }} 收藏
+            </a>
+            {% endif %}
+            <span class="action-btn static">
+                💬 {{ post.stats.comments }} 评论
+            </span>
+        </div>
     </header>
 
     <div class="post-content">
@@ -30,5 +57,67 @@
         {% endif %}
     </nav>
 </article>
+
+<!-- Comments Section -->
+<section class="comments-section">
+    <h2>评论 ({{ comments|length }})</h2>
+
+    {% if current_user.is_authenticated %}
+    <form method="POST" action="/post/{{ post.slug }}/comment" class="comment-form">
+        <textarea name="content" rows="3" placeholder="写下你的评论..." required minlength="2"></textarea>
+        <button type="submit" class="btn btn-primary">发表评论</button>
+    </form>
+    {% else %}
+    <div class="comment-login-hint">
+        <a href="/login?next=/post/{{ post.slug }}">登录</a> 后即可评论
+    </div>
+    {% endif %}
+
+    <div class="comments-list">
+        {% if comments %}
+            {% for comment in comments %}
+            <div class="comment-item">
+                <div class="comment-header">
+                    <strong>{{ comment.author.username }}</strong>
+                    <span class="comment-time">{{ comment.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+                </div>
+                <div class="comment-content">{{ comment.content }}</div>
+                {% if current_user.is_authenticated and current_user.id == comment.user_id %}
+                <form method="POST" action="/post/{{ post.slug }}/comment/{{ comment.id }}/delete"
+                      class="comment-delete-form"
+                      onsubmit="return confirm('确定删除这条评论吗？')">
+                    <button type="submit" class="btn-text danger">删除</button>
+                </form>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-comments">暂无评论，来抢沙发吧！</p>
+        {% endif %}
+    </div>
+</section>
+
+<script>
+async function toggleAction(slug, action) {
+    const resp = await fetch(`/post/${slug}/${action}`, { method: 'POST' });
+    if (!resp.ok) { alert('操作失败，请先登录'); return; }
+    const data = await resp.json();
+
+    if (action === 'like') {
+        const btn = document.getElementById('like-btn');
+        const key = 'liked';
+        btn.classList.toggle('active', data[key]);
+        btn.querySelector('.count').textContent = data.count;
+    } else if (action === 'favorite') {
+        const btn = document.getElementById('fav-btn');
+        const key = 'favorited';
+        btn.classList.toggle('active', data[key]);
+        btn.querySelector('.count').textContent = data.count;
+        // Update star icon
+        btn.innerHTML = (data[key] ? '🌟' : '⭐') +
+            ` <span class="count">${data.count}</span> 收藏`;
+    }
+}
+</script>
 
 {% endblock %}

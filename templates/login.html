@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}登录 — 英语学习博客{% endblock %}
+{% block content %}
+
+<div class="auth-page">
+    <div class="auth-card">
+        <h2>登录</h2>
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" id="username" name="username" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">登录</button>
+        </form>
+        <p class="auth-switch">还没有账号？<a href="/register">立即注册</a></p>
+    </div>
+</div>
+
+{% endblock %}

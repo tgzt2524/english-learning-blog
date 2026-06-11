@@ -34,7 +34,16 @@
             {% if post.summary %}
             <p class="post-summary">{{ post.summary }}</p>
             {% endif %}
-            <a href="/post/{{ post.slug }}" class="read-more">阅读全文 →</a>
+            <div class="post-card-footer">
+                <a href="/post/{{ post.slug }}" class="read-more">阅读全文 →</a>
+                {% if post.stats %}
+                <span class="post-stats">
+                    <span title="点赞">👍 {{ post.stats.likes }}</span>
+                    <span title="收藏">⭐ {{ post.stats.favorites }}</span>
+                    <span title="评论">💬 {{ post.stats.comments }}</span>
+                </span>
+                {% endif %}
+            </div>
         </article>
         {% endfor %}
     {% else %}

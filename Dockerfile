@@ -2,16 +2,19 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application
 COPY app.py .
+COPY models.py .
 COPY templates/ templates/
 COPY static/ static/
 COPY posts/ posts/
 
+RUN mkdir -p /app/data
+
 EXPOSE 5000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "--timeout", "120", "app:app"]
+# Init DB then start gunicorn
+CMD python3 -c "from app import app, init_db; init_db()" && \
+    gunicorn --bind 0.0.0.0:5000 --workers 2 --timeout 120 app:app
