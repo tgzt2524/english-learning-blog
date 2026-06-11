@@ -6,9 +6,12 @@
     <title>{% block title %}英语学习博客{% endblock %}</title>
     <link rel="stylesheet" href="/static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <header class="site-header">
         <div class="container">
             <a href="/" class="logo">📚 英语学习博客</a>
@@ -43,8 +46,13 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>英语学习博客 — 分享知识，一起进步。</p>
+            <p>📖 英语学习博客 — 分享知识，一起进步。🌈</p>
         </div>
     </footer>
+
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" title="切换暗色模式">🌙</button>
+
+    <script src="/static/app.js"></script>
 </body>
 </html>

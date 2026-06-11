@@ -6,7 +6,7 @@
     <header class="post-header">
         <h1>{{ post.title }}</h1>
         <div class="post-meta">
-            {% if post.date %}<span class="date">{{ post.date }}</span>{% endif %}
+            {% if post.date %}<span class="date">📅 {{ post.date }}</span>{% endif %}
             {% if post.tags %}
             <span class="tags">
                 {% for tag in post.tags %}
@@ -16,31 +16,22 @@
             {% endif %}
         </div>
 
-        <!-- Action buttons -->
         <div class="post-actions">
             {% if current_user.is_authenticated %}
             <button class="action-btn like-btn {% if post.liked %}active{% endif %}"
-                    onclick="toggleAction('{{ post.slug }}', 'like')"
-                    id="like-btn">
+                    onclick="toggleAction('{{ post.slug }}', 'like')" id="like-btn">
                 👍 <span class="count">{{ post.stats.likes }}</span> 点赞
             </button>
             <button class="action-btn fav-btn {% if post.favorited %}active{% endif %}"
-                    onclick="toggleAction('{{ post.slug }}', 'favorite')"
-                    id="fav-btn">
+                    onclick="toggleAction('{{ post.slug }}', 'favorite')" id="fav-btn">
                 {% if post.favorited %}🌟{% else %}⭐{% endif %}
                 <span class="count">{{ post.stats.favorites }}</span> 收藏
             </button>
             {% else %}
-            <a href="/login?next=/post/{{ post.slug }}" class="action-btn">
-                👍 {{ post.stats.likes }} 点赞
-            </a>
-            <a href="/login?next=/post/{{ post.slug }}" class="action-btn">
-                ⭐ {{ post.stats.favorites }} 收藏
-            </a>
+            <a href="/login?next=/post/{{ post.slug }}" class="action-btn">👍 {{ post.stats.likes }} 点赞</a>
+            <a href="/login?next=/post/{{ post.slug }}" class="action-btn">⭐ {{ post.stats.favorites }} 收藏</a>
             {% endif %}
-            <span class="action-btn static">
-                💬 {{ post.stats.comments }} 评论
-            </span>
+            <span class="action-btn static">💬 {{ post.stats.comments }} 评论</span>
         </div>
     </header>
 
@@ -51,25 +42,24 @@
     <nav class="post-nav">
         {% if prev_post %}
         <a href="/post/{{ prev_post.slug }}" class="prev">← {{ prev_post.title }}</a>
-        {% endif %}
+        {% else %}<span></span>{% endif %}
         {% if next_post %}
         <a href="/post/{{ next_post.slug }}" class="next">{{ next_post.title }} →</a>
         {% endif %}
     </nav>
 </article>
 
-<!-- Comments Section -->
 <section class="comments-section">
-    <h2>评论 ({{ comments|length }})</h2>
+    <h2>💬 评论 ({{ comments|length }})</h2>
 
     {% if current_user.is_authenticated %}
     <form method="POST" action="/post/{{ post.slug }}/comment" class="comment-form">
-        <textarea name="content" rows="3" placeholder="写下你的评论..." required minlength="2"></textarea>
-        <button type="submit" class="btn btn-primary">发表评论</button>
+        <textarea name="content" rows="3" placeholder="写下你的想法..." required minlength="2"></textarea>
+        <button type="submit" class="btn btn-primary">💬 发表评论</button>
     </form>
     {% else %}
     <div class="comment-login-hint">
-        <a href="/login?next=/post/{{ post.slug }}">登录</a> 后即可评论
+        🔐 <a href="/login?next=/post/{{ post.slug }}">登录</a> 后即可评论
     </div>
     {% endif %}
 
@@ -78,7 +68,7 @@
             {% for comment in comments %}
             <div class="comment-item">
                 <div class="comment-header">
-                    <strong>{{ comment.author.username }}</strong>
+                    <strong>🐣 {{ comment.author.username }}</strong>
                     <span class="comment-time">{{ comment.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
                 </div>
                 <div class="comment-content">{{ comment.content }}</div>
@@ -86,13 +76,13 @@
                 <form method="POST" action="/post/{{ post.slug }}/comment/{{ comment.id }}/delete"
                       class="comment-delete-form"
                       onsubmit="return confirm('确定删除这条评论吗？')">
-                    <button type="submit" class="btn-text danger">删除</button>
+                    <button type="submit" class="btn-text danger">🗑 删除</button>
                 </form>
                 {% endif %}
             </div>
             {% endfor %}
         {% else %}
-            <p class="no-comments">暂无评论，来抢沙发吧！</p>
+            <p class="no-comments">✨ 暂无评论，来抢沙发吧！</p>
         {% endif %}
     </div>
 </section>
@@ -105,16 +95,13 @@ async function toggleAction(slug, action) {
 
     if (action === 'like') {
         const btn = document.getElementById('like-btn');
-        const key = 'liked';
-        btn.classList.toggle('active', data[key]);
+        btn.classList.toggle('active', data.liked);
         btn.querySelector('.count').textContent = data.count;
     } else if (action === 'favorite') {
         const btn = document.getElementById('fav-btn');
-        const key = 'favorited';
-        btn.classList.toggle('active', data[key]);
+        btn.classList.toggle('active', data.favorited);
         btn.querySelector('.count').textContent = data.count;
-        // Update star icon
-        btn.innerHTML = (data[key] ? '🌟' : '⭐') +
+        btn.innerHTML = (data.favorited ? '🌟' : '⭐') +
             ` <span class="count">${data.count}</span> 收藏`;
     }
 }

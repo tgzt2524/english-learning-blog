@@ -3,8 +3,8 @@
 {% block content %}
 
 <div class="hero">
-    <h1>学英语，分享知识</h1>
-    <p>记录英语学习笔记、分享方法和资源。</p>
+    <h1>学英语，<span class="highlight">分享</span>知识</h1>
+    <p>记录学习笔记 · 分享方法资源 · 一起进步 🚀</p>
 </div>
 
 {% if tags %}
@@ -22,7 +22,7 @@
         <article class="post-card">
             <h2><a href="/post/{{ post.slug }}">{{ post.title }}</a></h2>
             <div class="post-meta">
-                {% if post.date %}<span class="date">{{ post.date }}</span>{% endif %}
+                {% if post.date %}<span class="date">📅 {{ post.date }}</span>{% endif %}
                 {% if post.tags %}
                 <span class="tags">
                     {% for tag in post.tags %}
@@ -35,19 +35,19 @@
             <p class="post-summary">{{ post.summary }}</p>
             {% endif %}
             <div class="post-card-footer">
-                <a href="/post/{{ post.slug }}" class="read-more">阅读全文 →</a>
+                <a href="/post/{{ post.slug }}" class="read-more">阅读全文</a>
                 {% if post.stats %}
                 <span class="post-stats">
-                    <span title="点赞">👍 {{ post.stats.likes }}</span>
-                    <span title="收藏">⭐ {{ post.stats.favorites }}</span>
-                    <span title="评论">💬 {{ post.stats.comments }}</span>
+                    <span>👍 {{ post.stats.likes }}</span>
+                    <span>⭐ {{ post.stats.favorites }}</span>
+                    <span>💬 {{ post.stats.comments }}</span>
                 </span>
                 {% endif %}
             </div>
         </article>
         {% endfor %}
     {% else %}
-        <p class="empty-state">暂无文章，敬请期待！</p>
+        <p class="empty-state">✨ 暂无文章，敬请期待！</p>
     {% endif %}
 </div>
 
