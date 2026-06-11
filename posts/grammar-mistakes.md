@@ -1,152 +1,150 @@
 ---
-title: 10 Common English Grammar Mistakes Chinese Speakers Make
+title: 中国人学英语最常犯的 10 个语法错误
 date: 2026-06-11
-tags: grammar, common-mistakes, tips
-summary: A practical guide to the most frequent grammar errors, with clear explanations and corrections.
+tags: 语法, 常见错误, 技巧
+summary: 总结最常见的 10 个语法误区，每个都附上解释和正确用法，实用不枯燥。
 ---
 
-## Introduction
+## 前言
 
-After years of teaching and learning English, I've noticed certain mistakes appear again and again among Chinese speakers. Here are the top 10, with explanations and fixes.
+教英语和自学英语这些年，我发现有些错误几乎每个人都会犯。以下是中国人最常踩的 10 个语法坑，每个都帮你搞明白。
 
-## 1. Missing Articles (a, an, the)
+## 1. 漏掉冠词（a, an, the）
 
-**Wrong:** I bought book yesterday.
-**Right:** I bought **a** book yesterday.
+**错误：** I bought book yesterday.
+**正确：** I bought **a** book yesterday.
 
-Chinese doesn't have articles, so it's natural to forget them. The rule of thumb:
+中文没有冠词，所以很容易忘。简单记法：
 
-- Use **a/an** for something mentioned the first time (*a book*)
-- Use **the** when both speaker and listener know which one (*the book I told you about*)
+- 第一次提到 → 用 **a / an**（*a book*）
+- 双方都知道指哪个 → 用 **the**（*the book I told you about*）
 
-**Quick practice:** "I saw ___ cat. ___ cat was black."
+**小练习：** "I saw ___ cat. ___ cat was black."
 → "I saw **a** cat. **The** cat was black."
 
-## 2. Tense Confusion — Present vs. Past
+## 2. 时态混乱 — 现在时 vs 过去时
 
-**Wrong:** Yesterday I go to the store.
-**Right:** Yesterday I **went** to the store.
+**错误：** Yesterday I go to the store.
+**正确：** Yesterday I **went** to the store.
 
-Chinese uses time words (昨天, 了) rather than verb conjugation. In English, the verb itself must change.
+中文用"昨天""了"表达时间，动词本身不变。但英语中，动词必须变形：
 
-| Time Signal | Tense | Example |
+| 时间信号 | 时态 | 例句 |
 |---|---|---|
-| every day, usually | Present Simple | I **go** |
-| yesterday, last week | Past Simple | I **went** |
-| now, currently | Present Continuous | I **am going** |
+| every day, usually | 一般现在时 | I **go** |
+| yesterday, last week | 一般过去时 | I **went** |
+| now, currently | 现在进行时 | I **am going** |
 
-## 3. Subject-Verb Agreement (Third Person -s)
+## 3. 主谓一致 — 漏掉第三人称 -s
 
-**Wrong:** She go to school every day.
-**Right:** She **goes** to school every day.
+**错误：** She go to school every day.
+**正确：** She **goes** to school every day.
 
-Remember: **he / she / it + verb + s**
+记住：**he / she / it + 动词 + s**。虽然不习惯，但这个 -s 绝对不能省。
 
-It feels unnatural to Chinese speakers, but this -s is non-negotiable in standard English.
+## 4. 可数 vs 不可数名词
 
-## 4. Countable vs. Uncountable Nouns
+**错误：** I have many informations.
+**正确：** I have **a lot of information**.
 
-**Wrong:** I have many informations.
-**Right:** I have **a lot of information**.
+有些在中文概念里可数的东西，英语中不可数：
 
-Some nouns that are countable in Chinese concepts are uncountable in English:
-
-| Uncountable | Common Error |
+| 不可数名词 | 常见错误 |
 |---|---|
 | information | ❌ informations |
 | advice | ❌ an advice → ✅ some advice |
 | furniture | ❌ furnitures |
 | news | ❌ a news → ✅ some news / a piece of news |
 
-## 5. Prepositions — In, On, At
+## 5. 介词 — in, on, at 到底怎么用
 
-**Wrong:** I will meet you in Monday.
-**Right:** I will meet you **on** Monday.
+**错误：** I will meet you in Monday.
+**正确：** I will meet you **on** Monday.
 
-| Preposition | Use |
+| 介词 | 时间用法 |
 |---|---|
-| **in** | months, years, seasons (in June, in 2026) |
-| **on** | days, dates (on Monday, on June 11) |
-| **at** | specific times (at 3 PM, at noon) |
+| **in** | 月份、年份、季节（in June, in 2026） |
+| **on** | 具体某天、日期（on Monday, on June 11） |
+| **at** | 具体时刻（at 3 PM, at noon） |
 
-**For places:**
-- **in** = inside (in Beijing, in the room)
-- **on** = surface (on the table, on the wall)
-- **at** = point (at the bus stop, at home)
+**地点用法：**
+- **in** = 在里面（in Beijing, in the room）
+- **on** = 在表面（on the table, on the wall）
+- **at** = 在某一点（at the bus stop, at home）
 
-## 6. "There Be" vs. "Have"
+## 6. "有" 用 there be 还是 have？
 
-**Wrong:** The room has many people.
-**Right:** **There are** many people in the room.
+**错误：** The room has many people.
+**正确：** **There are** many people in the room.
 
-In English, "have" usually requires a living subject that *possesses* something. For existence, use "there is / there are":
+英语中，have 一般要求主语是"拥有者"（人或动物）。表示"存在"用 there is / there are：
 
-- ✅ There is a book on the table.
-- ❌ The table has a book on it. (grammatically correct but unnatural)
-- ✅ I have a book.
-- ✅ The room has a window. (permanent feature — this one is natural!)
+- ✅ There is a book on the table.（桌子上有一本书）
+- ❌ The table has a book on it.（语法没错但不自然）
+- ✅ I have a book.（我有一本书）
+- ✅ The room has a window.（房间有窗户 — 这是永久特征，可以用 have）
 
-## 7. Overusing "Very" — Try Strong Adjectives
+## 7. 过度使用 "very" — 试试高级形容词
 
-**Wrong:** The movie was very good.
-**Better:** The movie was **excellent / fantastic / brilliant**.
+**错误：** The movie was very good.
+**更好：** The movie was **excellent / fantastic**.
 
-Instead of "very + basic adjective", learn the strong version:
+与其说 "very + 基础形容词"，不如直接学高级版本：
 
-| Basic | Strong |
+| 基础 | 进阶 |
 |---|---|
 | very good | excellent, superb |
 | very bad | terrible, awful |
 | very big | enormous, huge |
-| very small | tiny, minute |
+| very small | tiny |
 | very tired | exhausted |
-| very happy | thrilled, delighted |
+| very happy | thrilled |
 
-## 8. Word Order in Questions
+## 8. 疑问句的语序
 
-**Wrong:** You know where is the station?
-**Right:** Do you know where the station **is**?
+**错误：** You know where is the station?
+**正确：** Do you know where the station **is**?
 
-Embedded questions keep normal word order. Compare:
+嵌入疑问句保持正常语序，主语在动词前面。对比：
 
-- Direct: Where is the station?
-- Embedded: Do you know where the station **is**?
+- 直接问：Where is the station?
+- 嵌入问：Do you know where the station **is**?
 
-## 9. "Although... But..." — Pick One
+## 9. "虽然……但是……" 只能用一个
 
-**Wrong:** Although it was raining, but I went out.
-**Right:** **Although** it was raining, I went out.
-**Right:** It was raining, **but** I went out.
+**错误：** Although it was raining, but I went out.
+**正确：** **Although** it was raining, I went out.
+**或者：** It was raining, **but** I went out.
 
-Chinese uses 虽然...但是... (both), but English only allows one connector per clause pair.
+中文可以说"虽然……但是……"（两个都出现），但英语一个从句只能有一个连词。
 
-## 10. Saying "How to..." as a Question
+## 10. "How to..." 不能当疑问句
 
-**Wrong:** How to say this in English?
-**Right:** **How do you** say this in English?
+**错误：** How to say this in English?
+**正确：** **How do you** say this in English?
 
-"How to..." is a noun phrase, not a question. Use it in statements:
+"How to..." 是名词短语，不是疑问句。正确用法：
 
-- I don't know **how to** say this. ✅
+- I don't know **how to** say this. ✅（用在陈述句中）
 - **How to** learn English fast? ❌ → **How can I** learn English fast? ✅
 
 ---
 
-## Summary Table
+## 总结速查表
 
-| # | Mistake | Fix |
+| 序号 | 错误类型 | 改正方法 |
 |---|---|---|
-| 1 | Missing articles | Add a/an/the |
-| 2 | Wrong tense | Match verb to time signal |
-| 3 | Missing -s | He/She/It + verb-s |
-| 4 | Uncountable nouns | No plural, use "some" |
-| 5 | Wrong preposition | In/On/At: time and place rules |
-| 6 | "There be" vs "have" | Existence → there is/are |
-| 7 | Overusing "very" | Learn strong adjectives |
-| 8 | Question word order | Embedded: subject before verb |
-| 9 | Although... but | Choose one connector |
-| 10 | "How to..." as question | Add subject + auxiliary verb |
+| 1 | 漏冠词 | 加上 a/an/the |
+| 2 | 时态混乱 | 动词和时间信号对应 |
+| 3 | 缺 -s | He/She/It + 动词-s |
+| 4 | 不可数名词 | 不加复数，用 some |
+| 5 | 介词用错 | 按时间和地点规则选 in/on/at |
+| 6 | there be vs have | 表存在 → there is/are |
+| 7 | 滥用 very | 直接学高级形容词 |
+| 8 | 疑问句语序 | 嵌入句：主语在动词前 |
+| 9 | Although...but | 只选一个连词 |
+| 10 | How to 当问句 | 加上主语和助动词 |
 
-Keep practicing — consistency beats cramming every time! 💪
+坚持练习，每天进步一点点！💪
 
-If you have other common mistakes to share, open an issue on [GitHub](https://github.com/tgzt2524/english-learning-blog).
+有其他常见错误想分享？欢迎到 [GitHub](https://github.com/tgzt2524/english-learning-blog) 提 Issue。

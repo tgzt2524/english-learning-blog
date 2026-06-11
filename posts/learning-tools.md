@@ -1,100 +1,104 @@
 ---
-title: My Favorite Free Tools for Learning English in 2026
+title: 2026 年最推荐的免费英语学习工具
 date: 2026-06-10
-tags: resources, tools, recommendations
-summary: A curated list of free apps, websites, and tools that actually help improve your English.
+tags: 资源, 工具, 推荐
+summary: 精选一批真正好用且完全免费的英语学习工具，每一个我都亲自用过。
 ---
 
-## Introduction
+## 先说结论
 
-There are thousands of English learning tools out there. Most are either expensive, ineffective, or both. Here are the ones I actually use and recommend — all free.
+市面上的英语学习工具成千上万，大多数要么贵、要么没用、要么又贵又没用。
 
-## 1. Anki — Spaced Repetition for Vocabulary
+以下是我真正在用并且愿意推荐的——全部免费。
 
-[Anki](https://apps.ankiweb.net/) is a flashcard app that uses spaced repetition. You review cards just before you're about to forget them — it's backed by science.
+## 1. Anki — 用间隔重复背单词
 
-**Why it's great:**
-- Completely free (except iOS, which supports the project)
-- Shared decks for English vocabulary
-- You can create your own cards with example sentences
+[Anki](https://apps.ankiweb.net/) 是一款基于间隔重复算法的闪卡软件。它会在你即将遗忘的瞬间把卡片推给你复习——这背后有扎实的认知科学支撑。
 
-**Pro tip:** Always include full sentences on your cards, not just isolated words. "Context is everything."
+**为什么好用：**
+- 完全免费（iOS 版付费，但那是在支持开源项目）
+- 有海量共享单词牌组
+- 可以自己创建带例句的卡片
 
-## 2. YouGlish — Hear Words in Context
+**使用技巧：** 卡片上一定要放完整句子，不要只放孤立的单词。"语境决定一切。"
 
-[YouGlish](https://youglish.com/) searches YouTube for any word or phrase and plays it in real speech. You hear hundreds of real people saying the word naturally.
+## 2. YouGlish — 听真实语境中的发音
 
-**Use it to:**
-- Learn natural pronunciation (not textbook audio)
-- Understand how words are used in real sentences
-- Compare British vs. American pronunciation
+[YouGlish](https://youglish.com/) 能在 YouTube 海量视频中搜索任意单词或短语，让你听到成百上千个真人口语中的发音。
 
-## 3. ChatGPT / Claude — Your 24/7 Tutor
+**用来干什么：**
+- 学自然发音（不是教科书录音那种）
+- 理解单词在真实句子中的用法
+- 对比英式和美式发音差异
 
-AI language models have become incredible learning companions:
+## 3. ChatGPT / Claude — 你的 24 小时英语私教
 
-- **Grammar check:** Paste your writing and ask for corrections
-- **Explain differences:** "What's the difference between 'affect' and 'effect'?"
-- **Role-play:** "Let's have a conversation. You're a barista and I'm ordering coffee."
-- **Simplify text:** "Rewrite this article at a B1 level"
+AI 大模型已经成为极好的学习伙伴：
 
-**Prompt to try:**
-> I'm a Chinese speaker learning English. Please correct my sentence and explain the mistake in Chinese: [paste your sentence]
+- **语法检查：** 把你的作文贴进去，让它逐句修改
+- **辨析差异：** "affect 和 effect 到底有什么区别？举例说明"
+- **角色扮演：** "我们来对话，你扮演咖啡店店员，我要点单"
+- **降级阅读：** "把这篇《经济学人》文章改写成 B1 难度"
 
-## 4. Language Reactor — Netflix + YouTube Subtitles
+**试试这个 Prompt：**
+> 我是一名中国英语学习者，请帮我修改下面的句子，用中文解释错误原因：[贴上你的句子]
 
-[Language Reactor](https://www.languagereactor.com/) adds dual subtitles to Netflix and YouTube. You see English + your native language side by side.
+## 4. Language Reactor — Netflix + YouTube 双语字幕
 
-**Features:**
-- Click any word for instant dictionary lookup
-- Auto-pause after each subtitle
-- Save words to review later
+[Language Reactor](https://www.languagereactor.com/) 给 Netflix 和 YouTube 加上双语字幕，中英文对照显示。
 
-## 5. Grammarly — Beyond Spell Check
+**核心功能：**
+- 点击任意单词即时查词
+- 每句字幕自动暂停
+- 生词一键保存，回头复习
 
-[Grammarly](https://www.grammarly.com/) catches more than typos — it flags awkward phrasing, passive voice, and wordiness. The free version is enough for most learners.
+这是目前为止最舒服的"看剧学英语"方式。
 
-**What it catches:**
-- Article errors (a/an/the)
-- Preposition mistakes
-- Comma placement
-- Wordy sentences
+## 5. Grammarly — 不只是拼写检查
 
-## 6. BBC Learning English — Structured Content
+[Grammarly](https://www.grammarly.com/) 不止改拼写，还能揪出别扭的表达、被动语态滥用和啰嗦句式。免费版对大多数学习者已经够用。
 
-[BBC Learning English](https://www.bbc.co.uk/learningenglish/) has been around forever and keeps getting better:
+**它能改什么：**
+- 冠词错误（a/an/the）
+- 介词搭配错误
+- 逗号位置
+- 冗余表达
 
-- **6 Minute English** — bite-sized listening practice
-- **The English We Speak** — idioms and slang
-- **News Review** — learn vocabulary from real headlines
+## 6. BBC Learning English — 老牌但好用
 
-Best for: intermediate learners who want structured, high-quality content.
+[BBC Learning English](https://www.bbc.co.uk/learningenglish/) 做了几十年，内容一直在更新：
 
-## 7. Ozdic — Collocation Dictionary
+- **6 Minute English** — 每集 6 分钟的听力练习
+- **The English We Speak** — 地道习语和俚语
+- **News Review** — 用真实新闻学单词
 
-[Ozdic](https://ozdic.com/) shows you which words naturally go together. For example, do we say "commit a crime" or "do a crime"? Ozdic tells you.
+适合：想要高质量结构化内容的中级学习者。
 
-**Why collocations matter:**
-- "Make a decision" not "do a decision"
-- "Heavy rain" not "strong rain"
-- "Fast food" not "quick food"
+## 7. Ozdic — 搭配词典
 
-Sound natural = use the right collocations.
+[Ozdic](https://ozdic.com/) 告诉你哪些词是"天生一对"。比如到底说 "commit a crime" 还是 "do a crime"？一查就知道。
 
-## Comparison Table
+**为什么搭配重要：**
+- "做决定" 是 make a decision，不是 do a decision
+- "大雨" 是 heavy rain，不是 strong rain
+- "快餐" 是 fast food，不是 quick food
 
-| Tool | Best For | Free? |
-|------|----------|-------|
-| Anki | Vocabulary memorization | ✅ |
-| YouGlish | Pronunciation, real usage | ✅ |
-| ChatGPT | Grammar check, explanations | ✅ |
-| Language Reactor | Watching videos with subs | ✅ |
-| Grammarly | Writing correction | ✅ (basic) |
-| BBC Learning English | Structured lessons | ✅ |
-| Ozdic | Collocations | ✅ |
+想说得自然，就得用对的搭配。
+
+## 工具对比一览
+
+| 工具 | 最适合 | 免费？ |
+|------|--------|--------|
+| Anki | 背单词 | ✅ |
+| YouGlish | 发音、真实用法 | ✅ |
+| ChatGPT | 语法检查、答疑 | ✅ |
+| Language Reactor | 看视频学英语 | ✅ |
+| Grammarly | 写作批改 | ✅（基础版） |
+| BBC Learning English | 结构化课程 | ✅ |
+| Ozdic | 词语搭配 | ✅ |
 
 ---
 
-**The bottom line:** You don't need to spend money to improve your English. Pick 2-3 tools from this list, use them consistently, and you'll see real progress.
+**一句话总结：** 学好英语不需要花钱。从上面挑 2-3 个工具，坚持用，进步是看得到的。
 
-What tools do you use? Let me know on [GitHub](https://github.com/tgzt2524/english-learning-blog)!
+你在用什么工具？到 [GitHub](https://github.com/tgzt2524/english-learning-blog) 告诉我！

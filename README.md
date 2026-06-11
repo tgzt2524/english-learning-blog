@@ -1,62 +1,62 @@
-# English Learning Blog 📚
+# 英语学习博客 📚
 
-A personal blog for documenting my English learning journey. Built with **Flask + Markdown** — write posts as simple `.md` files, no database needed.
+记录英语学习历程的个人博客。基于 **Flask + Markdown** 构建 — 把文章写成 `.md` 文件即可发布，无需数据库。
 
-## Features
+## 功能
 
-- 📝 **Markdown posts** — just drop `.md` files in `posts/`
-- 🏷️ **Tag filtering** — organize posts by topics
-- 🎨 **Clean design** — responsive, readable, no bloat
-- 🐳 **Docker deployment** — one command to run
+- 📝 **Markdown 写文章** — 在 `posts/` 目录下放入 `.md` 文件即可
+- 🏷️ **标签筛选** — 按主题分类浏览
+- 🎨 **简洁设计** — 响应式、阅读友好、无冗余
+- 🐳 **Docker 一键部署** — 一条命令跑起来
 
-## Quick Start
+## 快速开始
 
 ```bash
-# Install dependencies
+# 安装依赖
 pip install -r requirements.txt
 
-# Run locally
+# 本地运行
 python app.py
 
-# Open in browser
+# 浏览器打开
 open http://localhost:5000
 ```
 
-## Docker
+## Docker 部署
 
 ```bash
 docker compose up -d
 ```
 
-Visit `http://localhost:5000`
+访问 `http://localhost:5000`
 
-## Adding a Post
+## 写文章
 
-Create a `.md` file in `posts/` with front matter:
+在 `posts/` 目录下创建 `.md` 文件，带上 front matter：
 
 ```markdown
 ---
-title: Your Post Title
+title: 文章标题
 date: 2026-06-11
-tags: grammar, tips
-summary: A short description for the homepage.
+tags: 语法, 技巧
+summary: 显示在首页的简短摘要。
 ---
 
-Your content here...
+正文内容……
 ```
 
-## Project Structure
+## 目录结构
 
 ```
 english-learning-blog/
-├── app.py              # Flask application
-├── requirements.txt    # Python dependencies
+├── app.py              # Flask 应用
+├── requirements.txt    # Python 依赖
 ├── Dockerfile
 ├── docker-compose.yml
-├── posts/              # Markdown blog posts
+├── posts/              # Markdown 文章
 │   ├── hello-world.md
 │   └── ...
-├── templates/          # Jinja2 HTML templates
+├── templates/          # Jinja2 模板
 │   ├── base.html
 │   ├── index.html
 │   ├── post.html
@@ -65,6 +65,6 @@ english-learning-blog/
     └── style.css
 ```
 
-## License
+## 开源协议
 
-MIT — feel free to use, modify, and share.
+MIT — 随意使用、修改和分享。

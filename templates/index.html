@@ -1,15 +1,15 @@
 {% extends "base.html" %}
-{% block title %}Home — English Learning Blog{% endblock %}
+{% block title %}首页 — 英语学习博客{% endblock %}
 {% block content %}
 
 <div class="hero">
-    <h1>Learn English, Share Knowledge</h1>
-    <p>A personal space for English learning notes, tips, and resources.</p>
+    <h1>学英语，分享知识</h1>
+    <p>记录英语学习笔记、分享方法和资源。</p>
 </div>
 
 {% if tags %}
 <div class="tags-filter">
-    <a href="/" class="tag {% if not current_tag %}active{% endif %}">All</a>
+    <a href="/" class="tag {% if not current_tag %}active{% endif %}">全部</a>
     {% for tag in tags %}
     <a href="/?tag={{ tag }}" class="tag {% if current_tag == tag %}active{% endif %}">{{ tag }}</a>
     {% endfor %}
@@ -34,11 +34,11 @@
             {% if post.summary %}
             <p class="post-summary">{{ post.summary }}</p>
             {% endif %}
-            <a href="/post/{{ post.slug }}" class="read-more">Read more →</a>
+            <a href="/post/{{ post.slug }}" class="read-more">阅读全文 →</a>
         </article>
         {% endfor %}
     {% else %}
-        <p class="empty-state">No posts yet. Check back soon!</p>
+        <p class="empty-state">暂无文章，敬请期待！</p>
     {% endif %}
 </div>
 

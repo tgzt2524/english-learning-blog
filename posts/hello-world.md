@@ -1,38 +1,38 @@
 ---
-title: Hello World — Welcome to My English Learning Blog
+title: 你好，欢迎来到我的英语学习博客
 date: 2026-06-11
-tags: English, learning, introduction
-summary: The first post! An introduction to this blog and my English learning journey.
+tags: 英语, 学习, 介绍
+summary: 第一篇文章！聊聊我为什么建这个博客，以及我的英语学习理念。
 ---
 
-## Why I Started This Blog
+## 我为什么要建这个博客
 
-Hi there! 👋 Welcome to my English learning blog.
+你好！👋 欢迎来到我的英语学习博客。
 
-I've been learning English for years, but like many learners, I often hit the "intermediate plateau" — that frustrating stage where you know enough to get by, but real fluency still feels out of reach.
+我学英语很多年了，但和很多学习者一样，常常卡在"中级瓶颈期"——那种够应付日常但离真正流利还差一口气的阶段。
 
-This blog is my attempt to **push through that plateau**.
+这个博客，就是为了**突破这个瓶颈**而建的。
 
-## What You Can Expect
+## 你会看到什么
 
-Here's the plan:
+我计划写这些内容：
 
-- **Grammar deep dives** — not just rules, but *why* they work the way they do
-- **Vocabulary building** — words in context, with real examples
-- **Reading notes** — what I learn from articles, books, and essays
-- **Writing practice** — I'll post my own essays and welcome feedback
-- **Learning tips** — tools and techniques that actually work
+- **语法深挖** — 不只是规则，更是规则背后的逻辑
+- **词汇积累** — 放在语境里学单词，配合真实例句
+- **阅读笔记** — 从英文文章和书籍中学到的东西
+- **写作练习** — 发布自己的英文习作，欢迎指正
+- **学习技巧** — 真正有效的方法和工具推荐
 
-## My Learning Philosophy
+## 我的学习理念
 
-I believe in three things:
+我信奉三件事：
 
-1. **Input before output** — read and listen *a lot* before trying to produce
-2. **Consistency over intensity** — 20 minutes daily beats 3 hours once a week
-3. **Share to learn** — explaining a concept to others is the best way to master it
+1. **先输入，后输出** — 大量阅读和听力是开口说的基础
+2. **每天 20 分钟，好过周末狂学 3 小时** — 坚持比突击重要
+3. **教会别人是最好的学习** — 把知识讲清楚，才算真正掌握
 
-## Let's Learn Together
+## 一起学习
 
-If you're also learning English — or if you're a native speaker who wants to help — feel free to open an issue or pull request on [GitHub](https://github.com/tgzt2524/english-learning-blog).
+如果你也在学英语，或者你是英语母语者愿意帮忙指正，欢迎到 [GitHub](https://github.com/tgzt2524/english-learning-blog) 提 Issue 或 Pull Request。
 
-Here's to the journey! 🚀
+学习之路，一起走！🚀
