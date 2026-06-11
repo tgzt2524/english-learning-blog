@@ -2,29 +2,50 @@
 {% block title %}注册 — 英语学习博客{% endblock %}
 {% block content %}
 
-<div class="auth-page">
-    <div class="auth-card">
-        <h2>✨ 注册</h2>
-        <form method="POST" action="/register">
-            <div class="form-group">
-                <label for="username">👤 用户名</label>
-                <input type="text" id="username" name="username" required autofocus minlength="2">
-            </div>
-            <div class="form-group">
-                <label for="email">📧 邮箱</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">🔒 密码</label>
-                <input type="password" id="password" name="password" required minlength="6">
-            </div>
-            <div class="form-group">
-                <label for="confirm">🔒 确认密码</label>
-                <input type="password" id="confirm" name="confirm" required minlength="6">
-            </div>
-            <button type="submit" class="btn btn-primary" style="width:100%">注册</button>
-        </form>
-        <p class="auth-switch">已有账号？<a href="/login">立即登录</a></p>
+<div class="flex justify-center items-center py-20 px-4">
+    <div class="card bg-base-100 shadow-xl w-full max-w-md">
+        <div class="card-body">
+            <h2 class="card-title text-2xl justify-center mb-4">
+                <i class="fa-solid fa-user-plus text-primary"></i> 注册
+            </h2>
+            <form method="POST" action="/register">
+                <div class="form-control mb-4">
+                    <label class="label" for="username">
+                        <span class="label-text font-semibold"><i class="fa-solid fa-user mr-1"></i>用户名</span>
+                    </label>
+                    <input type="text" id="username" name="username"
+                           class="input input-bordered w-full" required autofocus minlength="2">
+                </div>
+                <div class="form-control mb-4">
+                    <label class="label" for="email">
+                        <span class="label-text font-semibold"><i class="fa-solid fa-envelope mr-1"></i>邮箱</span>
+                    </label>
+                    <input type="email" id="email" name="email"
+                           class="input input-bordered w-full" required>
+                </div>
+                <div class="form-control mb-4">
+                    <label class="label" for="password">
+                        <span class="label-text font-semibold"><i class="fa-solid fa-lock mr-1"></i>密码</span>
+                    </label>
+                    <input type="password" id="password" name="password"
+                           class="input input-bordered w-full" required minlength="6">
+                </div>
+                <div class="form-control mb-6">
+                    <label class="label" for="confirm">
+                        <span class="label-text font-semibold"><i class="fa-solid fa-lock mr-1"></i>确认密码</span>
+                    </label>
+                    <input type="password" id="confirm" name="confirm"
+                           class="input input-bordered w-full" required minlength="6">
+                </div>
+                <button type="submit" class="btn btn-primary w-full">
+                    <i class="fa-solid fa-user-plus mr-1"></i>注册
+                </button>
+            </form>
+            <div class="divider text-sm opacity-50">or</div>
+            <p class="text-center text-sm opacity-70">
+                已有账号？<a href="/login" class="link link-primary font-semibold">立即登录</a>
+            </p>
+        </div>
     </div>
 </div>
 

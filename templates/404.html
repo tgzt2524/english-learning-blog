@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 {% block title %}404 — 英语学习博客{% endblock %}
 {% block content %}
-<div class="error-404">
-    <h1>404</h1>
-    <p>😅 你要找的页面去火星了...</p>
-    <a href="/" class="btn btn-primary">← 返回首页</a>
+
+<div class="flex flex-col items-center justify-center py-32 px-4">
+    <i class="fa-solid fa-face-frown text-8xl text-primary mb-6"></i>
+    <h1 class="text-6xl font-bold mb-4">404</h1>
+    <p class="text-xl opacity-70 mb-8">😅 你要找的页面去火星了...</p>
+    <a href="/" class="btn btn-primary btn-lg">
+        <i class="fa-solid fa-house mr-2"></i>返回首页
+    </a>
 </div>
+
 {% endblock %}

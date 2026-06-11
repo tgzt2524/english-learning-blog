@@ -2,31 +2,63 @@
 {% block title %}关于 — 英语学习博客{% endblock %}
 {% block content %}
 
-<div class="page">
-    <h1>🙋 关于本站</h1>
+<div class="max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold mb-8">
+        <i class="fa-solid fa-circle-info text-primary mr-3"></i>关于本站
+    </h1>
 
-    <h2>为什么要建这个博客？</h2>
-    <p>
-        这是一个记录英语学习历程的个人空间。我相信最好的学习方式是分享——
-        写作能巩固知识，分享则能收获反馈和讨论。📝
-    </p>
+    <div class="card bg-base-100 shadow-lg mb-8">
+        <div class="card-body">
+            <h2 class="card-title text-xl"><i class="fa-solid fa-lightbulb text-warning mr-2"></i>为什么要建这个博客？</h2>
+            <p class="opacity-80">
+                这是一个记录英语学习历程的个人空间。我相信最好的学习方式是分享——
+                写作能巩固知识，分享则能收获反馈和讨论。📝
+            </p>
+        </div>
+    </div>
 
-    <h2>这里有什么</h2>
-    <ul>
-        <li><strong>语法技巧</strong> — 常见误区和详细讲解</li>
-        <li><strong>词汇积累</strong> — 单词表、搭配、习语</li>
-        <li><strong>阅读笔记</strong> — 英文文章和书籍的读后感</li>
-        <li><strong>写作练习</strong> — 英文写作和修改记录</li>
-        <li><strong>学习资源</strong> — 好用的工具、网站和学习方法</li>
-    </ul>
+    <div class="card bg-base-100 shadow-lg mb-8">
+        <div class="card-body">
+            <h2 class="card-title text-xl"><i class="fa-solid fa-list-check text-info mr-2"></i>这里有什么</h2>
+            <ul class="space-y-3 mt-3 opacity-80">
+                <li class="flex items-center gap-2">
+                    <i class="fa-solid fa-check-circle text-success"></i>
+                    <strong>语法技巧</strong> — 常见误区和详细讲解
+                </li>
+                <li class="flex items-center gap-2">
+                    <i class="fa-solid fa-check-circle text-success"></i>
+                    <strong>词汇积累</strong> — 单词表、搭配、习语
+                </li>
+                <li class="flex items-center gap-2">
+                    <i class="fa-solid fa-check-circle text-success"></i>
+                    <strong>阅读笔记</strong> — 英文文章和书籍的读后感
+                </li>
+                <li class="flex items-center gap-2">
+                    <i class="fa-solid fa-check-circle text-success"></i>
+                    <strong>写作练习</strong> — 英文写作和修改记录
+                </li>
+                <li class="flex items-center gap-2">
+                    <i class="fa-solid fa-check-circle text-success"></i>
+                    <strong>学习资源</strong> — 好用的工具、网站和学习方法
+                </li>
+            </ul>
+        </div>
+    </div>
 
-    <h2>如何参与</h2>
-    <p>
-        发现错误或者想分享你的心得？本站完全开源！
-        欢迎在
-        <a href="https://github.com/tgzt2524/english-learning-blog" target="_blank">GitHub</a>
-        上提交 Issue 或 Pull Request。💪
-    </p>
+    <div class="card bg-base-100 shadow-lg">
+        <div class="card-body">
+            <h2 class="card-title text-xl"><i class="fa-solid fa-code-branch text-accent mr-2"></i>如何参与</h2>
+            <p class="opacity-80">
+                发现错误或者想分享你的心得？本站完全开源！
+                欢迎在
+                <a href="https://github.com/tgzt2524/english-learning-blog" target="_blank"
+                   class="link link-primary font-bold">
+                    <i class="fa-brands fa-github mr-1"></i>GitHub
+                </a>
+                上提交 Issue 或 Pull Request。💪
+            </p>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
