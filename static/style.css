@@ -1,0 +1,254 @@
+/* === Reset & Base === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text: #1a1a2e;
+    --text-secondary: #555;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --border: #e5e7eb;
+    --code-bg: #f1f5f9;
+    --tag-bg: #eff6ff;
+    --tag-text: #2563eb;
+    --radius: 8px;
+    --max-width: 800px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+/* === Header === */
+.site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text) !important;
+}
+
+.site-header nav { display: flex; gap: 24px; }
+.site-header nav a {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color 0.15s;
+}
+.site-header nav a:hover { color: var(--accent); }
+
+/* === Hero === */
+.hero {
+    text-align: center;
+    padding: 60px 0 40px;
+}
+.hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; }
+.hero p { color: var(--text-secondary); font-size: 1.1rem; }
+
+/* === Tags Filter === */
+.tags-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.15s;
+}
+.tag:hover { background: #dbeafe; }
+.tag.active { background: var(--accent); color: #fff; }
+
+/* === Post Cards === */
+.post-list { display: flex; flex-direction: column; gap: 32px; }
+
+.post-card {
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: box-shadow 0.2s;
+    background: var(--bg);
+}
+.post-card:hover { box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+
+.post-card h2 { font-size: 1.35rem; margin-bottom: 8px; }
+.post-card h2 a { color: var(--text); }
+.post-card h2 a:hover { color: var(--accent); }
+
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+}
+
+.post-meta .date { color: var(--text-secondary); }
+.post-meta .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.post-summary { color: var(--text-secondary); margin-bottom: 12px; line-height: 1.6; }
+
+.read-more {
+    font-weight: 600;
+    font-size: 0.92rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--text-secondary);
+}
+
+/* === Single Post === */
+.single-post { padding: 40px 0; }
+
+.post-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.post-header h1 {
+    font-size: 2rem;
+    font-family: 'Merriweather', Georgia, serif;
+    margin-bottom: 12px;
+}
+
+/* === Post Content (Markdown output) === */
+.post-content {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 1.08rem;
+    line-height: 1.85;
+}
+
+.post-content h1, .post-content h2, .post-content h3 {
+    font-family: 'Inter', sans-serif;
+    margin: 40px 0 16px;
+}
+.post-content h1 { font-size: 1.8rem; }
+.post-content h2 { font-size: 1.45rem; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
+.post-content h3 { font-size: 1.2rem; }
+
+.post-content p { margin-bottom: 20px; }
+.post-content ul, .post-content ol { margin: 12px 0 20px 24px; }
+.post-content li { margin-bottom: 6px; }
+.post-content blockquote {
+    border-left: 4px solid var(--accent);
+    padding: 12px 20px;
+    margin: 20px 0;
+    background: var(--bg-secondary);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+.post-content code {
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+.post-content pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+.post-content pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+}
+.post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+.post-content th, .post-content td {
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    text-align: left;
+}
+.post-content th { background: var(--bg-secondary); font-family: 'Inter', sans-serif; }
+.post-content hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+.post-content img { max-width: 100%; border-radius: var(--radius); }
+.post-content a { text-decoration: underline; text-underline-offset: 2px; }
+.post-content strong { font-family: 'Inter', sans-serif; }
+
+/* === Post Nav === */
+.post-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-weight: 500;
+}
+
+/* === Page (About etc) === */
+.page { padding: 40px 0; }
+.page h1 { font-size: 2rem; margin-bottom: 24px; }
+.page h2 { font-size: 1.3rem; margin: 32px 0 12px; }
+.page p, .page li { color: var(--text-secondary); line-height: 1.8; margin-bottom: 12px; }
+.page ul { margin-left: 20px; }
+
+/* === Footer === */
+.site-footer {
+    margin-top: 80px;
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* === Responsive === */
+@media (max-width: 640px) {
+    .hero h1 { font-size: 1.6rem; }
+    .hero p { font-size: 1rem; }
+    .post-card { padding: 20px; }
+    .post-header h1 { font-size: 1.5rem; }
+    .post-content { font-size: 1rem; }
+    .site-header .container { flex-direction: column; gap: 12px; }
+}

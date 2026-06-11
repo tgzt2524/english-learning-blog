@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Home — English Learning Blog{% endblock %}
+{% block content %}
+
+<div class="hero">
+    <h1>Learn English, Share Knowledge</h1>
+    <p>A personal space for English learning notes, tips, and resources.</p>
+</div>
+
+{% if tags %}
+<div class="tags-filter">
+    <a href="/" class="tag {% if not current_tag %}active{% endif %}">All</a>
+    {% for tag in tags %}
+    <a href="/?tag={{ tag }}" class="tag {% if current_tag == tag %}active{% endif %}">{{ tag }}</a>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="post-list">
+    {% if posts %}
+        {% for post in posts %}
+        <article class="post-card">
+            <h2><a href="/post/{{ post.slug }}">{{ post.title }}</a></h2>
+            <div class="post-meta">
+                {% if post.date %}<span class="date">{{ post.date }}</span>{% endif %}
+                {% if post.tags %}
+                <span class="tags">
+                    {% for tag in post.tags %}
+                    <a href="/?tag={{ tag }}" class="tag">{{ tag }}</a>
+                    {% endfor %}
+                </span>
+                {% endif %}
+            </div>
+            {% if post.summary %}
+            <p class="post-summary">{{ post.summary }}</p>
+            {% endif %}
+            <a href="/post/{{ post.slug }}" class="read-more">Read more →</a>
+        </article>
+        {% endfor %}
+    {% else %}
+        <p class="empty-state">No posts yet. Check back soon!</p>
+    {% endif %}
+</div>
+
+{% endblock %}
